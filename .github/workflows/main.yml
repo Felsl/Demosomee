@@ -1,0 +1,30 @@
+name: Deploy HTML to Somee
+
+on:
+push:
+branches:
+- main
+
+jobs:
+deploy:
+runs-on: ubuntu-latest
+
+```
+steps:
+  - name: Checkout source
+    uses: actions/checkout@v3
+
+  - name: Deploy via FTP
+    uses: SamKirkland/FTP-Deploy-Action@v4.3.3
+    with:
+      server: felsl.somee.com
+      username: FlSl
+      password: Garen123
+      protocol: ftp
+      port: 21
+    
+      local-dir: './Build/'
+      server-dir: '/www.felsl.somee.com/'
+   
+      dangerous-clean-slate: false
+```
